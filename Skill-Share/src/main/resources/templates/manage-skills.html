@@ -273,18 +273,14 @@
         }
 
         .prof-BEGINNER {
-            width: 25%;
+            width: 33.33%;
         }
 
         .prof-INTERMEDIATE {
-            width: 50%;
+            width: 66.66%;
         }
 
         .prof-ADVANCED {
-            width: 75%;
-        }
-
-        .prof-EXPERT {
             width: 100%;
         }
 
@@ -624,7 +620,7 @@
                     <h5 class="modal-title"><i class="bi bi-pencil-square me-2 text-primary"></i>Edit Skill</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="editSkillForm" method="post" action="">
+                <form id="editSkillForm" method="post" th:action="@{/skills/edit}">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="edit-name" class="form-label">Skill Name</label>
