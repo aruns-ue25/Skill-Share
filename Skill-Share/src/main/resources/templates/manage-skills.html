@@ -398,6 +398,29 @@
             box-shadow: 0 0 0 3px rgba(59, 130, 246, .18);
         }
 
+        /* ── Custom Radio Buttons ── */
+        .btn-prof {
+            border: 1.5px solid var(--primary-light);
+            color: var(--text-muted);
+            background: #fff;
+            padding: 0.6rem 0;
+            transition: all 0.2s;
+        }
+
+        .btn-prof:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--bg-light);
+        }
+
+        .btn-check:checked+.btn-prof {
+            background: var(--primary-subtle);
+            color: var(--primary-dark);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, .15);
+            font-weight: 700 !important;
+        }
+
         /* ── Alerts ── */
         .alert-custom {
             padding: 1rem 1.25rem;
@@ -563,12 +586,23 @@
 
                         <!-- Proficiency -->
                         <div class="mb-2">
-                            <label for="proficiency" class="form-label">Proficiency Level</label>
-                            <select class="form-select" id="proficiency" th:field="*{proficiency}" required>
-                                <option value="" disabled selected>Select your level...</option>
-                                <option th:each="prof : ${proficiencies}" th:value="${prof}" th:text="${prof}">
-                                    Proficiency</option>
-                            </select>
+                            <label class="form-label d-block mb-2">Proficiency Level</label>
+                            <div class="d-flex gap-2">
+                                <input type="radio" class="btn-check" name="proficiency" id="prof-beg" value="BEGINNER"
+                                    th:field="*{proficiency}" required>
+                                <label class="btn btn-prof flex-fill fw-semibold rounded-pill"
+                                    for="prof-beg">Beginner</label>
+
+                                <input type="radio" class="btn-check" name="proficiency" id="prof-int"
+                                    value="INTERMEDIATE" th:field="*{proficiency}" required>
+                                <label class="btn btn-prof flex-fill fw-semibold rounded-pill"
+                                    for="prof-int">Intermediate</label>
+
+                                <input type="radio" class="btn-check" name="proficiency" id="prof-adv" value="ADVANCED"
+                                    th:field="*{proficiency}" required>
+                                <label class="btn btn-prof flex-fill fw-semibold rounded-pill"
+                                    for="prof-adv">Advanced</label>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -605,10 +639,23 @@
                         </div>
 
                         <div class="mb-2">
-                            <label for="edit-proficiency" class="form-label">Proficiency Level</label>
-                            <select class="form-select" id="edit-proficiency" name="proficiency" required>
-                                <option th:each="prof : ${proficiencies}" th:value="${prof}" th:text="${prof}"></option>
-                            </select>
+                            <label class="form-label d-block mb-2">Proficiency Level</label>
+                            <div class="d-flex gap-2">
+                                <input type="radio" class="btn-check" name="proficiency" id="edit-prof-beg"
+                                    value="BEGINNER" required>
+                                <label class="btn btn-prof flex-fill fw-semibold rounded-pill"
+                                    for="edit-prof-beg">Beginner</label>
+
+                                <input type="radio" class="btn-check" name="proficiency" id="edit-prof-int"
+                                    value="INTERMEDIATE" required>
+                                <label class="btn btn-prof flex-fill fw-semibold rounded-pill"
+                                    for="edit-prof-int">Intermediate</label>
+
+                                <input type="radio" class="btn-check" name="proficiency" id="edit-prof-adv"
+                                    value="ADVANCED" required>
+                                <label class="btn btn-prof flex-fill fw-semibold rounded-pill"
+                                    for="edit-prof-adv">Advanced</label>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -637,7 +684,14 @@
             // Populate the inputs
             document.getElementById('edit-name').value = name;
             document.getElementById('edit-category').value = category;
-            document.getElementById('edit-proficiency').value = proficiency;
+
+            // Check the correct proficiency radio pill
+            const editProfRadios = form.querySelectorAll('input[name="proficiency"]');
+            editProfRadios.forEach(radio => {
+                if (radio.value === proficiency) {
+                    radio.checked = true;
+                }
+            });
         }
 
         // Auto-hide alerts after 5 seconds
