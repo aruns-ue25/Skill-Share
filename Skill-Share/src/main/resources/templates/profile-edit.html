@@ -102,6 +102,31 @@
                         <div class="form-text mt-2">Allowed formats: JPG, PNG. Max size: 5MB.</div>
                     </div>
 
+                    <div class="mb-4">
+                        <label class="form-label">Main Skills to Highlight</label>
+                        <p class="text-muted small mb-3">Select up to 5 skills you want to feature on your profile.</p>
+                        <input type="hidden" th:field="*{mainSkillIdsString}" id="mainSkillIdsString">
+                        <div class="skills-selection-grid p-3 border rounded-4 bg-light">
+                            <div th:if="${#lists.isEmpty(allSkills)}" class="text-center py-2">
+                                <span class="text-muted small">No skills added yet. <a th:href="@{/skills}">Add some skills</a> first.</span>
+                            </div>
+                            <div class="row row-cols-1 row-cols-md-2 g-2">
+                                <div class="col" th:each="skill : ${allSkills}">
+                                    <div class="form-check">
+                                        <input class="form-check-input main-skill-checkbox" type="checkbox" 
+                                               th:value="${skill.id}" 
+                                               th:checked="${profileUpdateDTO.mainSkillIds != null && profileUpdateDTO.mainSkillIds.contains(skill.id)}"
+                                               th:id="'skill-' + ${skill.id}">
+                                        <label class="form-check-label small fw-bold text-dark" th:for="'skill-' + ${skill.id}" th:text="${skill.name}">
+                                            Skill Name
+                                        </label>
+                                        <div class="text-muted" style="font-size: 0.7rem;" th:text="${skill.category}">Category</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="d-flex gap-3 pt-3">
                         <button type="submit" class="btn-custom btn-primary-gradient flex-grow-1">Save Profile Changes</button>
                         <a th:href="@{/profile}" class="btn-custom btn-cancel">Cancel</a>
@@ -112,5 +137,32 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('.main-skill-checkbox');
+            const hiddenInput = document.getElementById('mainSkillIdsString');
+            const maxSelection = 5;
+
+            function updateHiddenInput() {
+                const checkedValues = Array.from(document.querySelectorAll('.main-skill-checkbox:checked'))
+                    .map(cb => cb.value);
+                hiddenInput.value = checkedValues.join(',');
+            }
+
+            checkboxes.forEach(cb => {
+                cb.addEventListener('change', function() {
+                    const checkedCount = document.querySelectorAll('.main-skill-checkbox:checked').length;
+                    if (checkedCount > maxSelection) {
+                        this.checked = false;
+                        alert('You can only select up to ' + maxSelection + ' main skills.');
+                    }
+                    updateHiddenInput();
+                });
+            });
+
+            // Initial sync
+            updateHiddenInput();
+        });
+    </script>
 </body>
 </html>
