@@ -24,6 +24,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     private final UserProfileRepository userProfileRepository;
     private final com.skillshare.skillshare.repository.UserRepository userRepository;
+    private final com.skillshare.skillshare.repository.SkillRepository skillRepository;
     private static final String UPLOAD_DIRECTORY = "src/main/resources/static/images/profiles/";
 
     @Override
@@ -49,6 +50,42 @@ public class UserProfileServiceImpl implements UserProfileService {
             validateImage(picture);
             String fileName = storeFile(picture);
             profile.setProfilePictureUrl("/images/profiles/" + fileName);
+        }
+
+        // --- Main Skills Selection Logic ---
+        java.util.Set<Long> selectedSkillIds = new java.util.HashSet<>();
+        if (updateDTO.getMainSkillIdsString() != null && !updateDTO.getMainSkillIdsString().isBlank()) {
+            java.util.Arrays.stream(updateDTO.getMainSkillIdsString().split(","))
+                    .filter(s -> !s.isBlank())
+                    .map(Long::valueOf)
+                    .forEach(selectedSkillIds::add);
+        } else if (updateDTO.getMainSkillIds() != null) {
+            selectedSkillIds.addAll(updateDTO.getMainSkillIds());
+        }
+
+        if (!selectedSkillIds.isEmpty()) {
+            // Fetch all valid skill IDs belonging to this user
+            java.util.Set<Long> ownedSkillIds = skillRepository.findAllByOwnerId(userId)
+                    .stream()
+                    .map(com.skillshare.skillshare.model.skill.Skill::getId)
+                    .collect(java.util.stream.Collectors.toSet());
+
+            // Ensure every selected ID is actually owned by the user
+            boolean allOwned = ownedSkillIds.containsAll(selectedSkillIds);
+            if (!allOwned) {
+                throw new IllegalArgumentException("One or more selected skills do not belong to you.");
+            }
+
+            // Limit check: Max 5 skills
+            if (selectedSkillIds.size() > 5) {
+                throw new IllegalArgumentException("You can only select up to 5 main skills.");
+            }
+
+            // Update profile
+            profile.getMainSkillIds().clear();
+            profile.getMainSkillIds().addAll(selectedSkillIds);
+        } else {
+            profile.getMainSkillIds().clear();
         }
 
         UserProfile savedProfile = userProfileRepository.save(profile);
@@ -78,6 +115,27 @@ public class UserProfileServiceImpl implements UserProfileService {
             user.setProfile(profile);
             userProfileRepository.save(profile);
         }
+    }
+
+    @Override
+    @Transactional
+    public void toggleMainSkill(Long userId, Long skillId) {
+        UserProfile profile = userProfileRepository.findByUserId(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("Profile not found for user ID: " + userId));
+
+        if (profile.getMainSkillIds().contains(skillId)) {
+            profile.getMainSkillIds().remove(skillId);
+        } else {
+            // Validate ownership before adding
+            skillRepository.findByIdAndOwnerId(skillId, userId)
+                    .orElseThrow(() -> new IllegalArgumentException("You do not own this skill."));
+
+            if (profile.getMainSkillIds().size() >= 5) {
+                throw new IllegalStateException("You can only highlight up to 5 main skills.");
+            }
+            profile.getMainSkillIds().add(skillId);
+        }
+        userProfileRepository.save(profile);
     }
 
     private void validateImage(MultipartFile file) {

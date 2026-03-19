@@ -8,5 +8,6 @@ public interface UserProfileService {
     UserProfileDTO getProfileByUserId(Long userId);
     UserProfileDTO updateProfile(Long userId, UserProfileUpdateDTO updateDTO, MultipartFile picture);
     void toggleAvailability(Long userId);
+    void toggleMainSkill(Long userId, Long skillId);
     void createMissingProfiles();
 }
