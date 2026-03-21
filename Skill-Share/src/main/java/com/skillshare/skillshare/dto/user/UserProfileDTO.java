@@ -19,6 +19,7 @@ public class UserProfileDTO {
     private String bio;
     private String phoneNumber;
     private String location;
+    private String university;
     private String profilePictureUrl;
     private AvailabilityStatus availabilityStatus;
     private Set<Long> mainSkillIds;

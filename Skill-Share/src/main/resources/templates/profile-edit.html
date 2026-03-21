@@ -95,6 +95,12 @@
                     </div>
 
                     <div class="mb-4">
+                        <label for="university" class="form-label">University</label>
+                        <input type="text" th:field="*{university}" class="form-control" th:classappend="${#fields.hasErrors('university')} ? 'is-invalid' : ''" placeholder="Your University Name">
+                        <div class="error-message" th:if="${#fields.hasErrors('university')}" th:errors="*{university}"></div>
+                    </div>
+
+                    <div class="mb-4">
                         <label for="profilePicture" class="form-label">Profile Picture</label>
                         <input type="file" th:field="*{profilePicture}" class="form-control" accept="image/jpeg,image/png">
                         <div class="error-message" th:if="${#fields.hasErrors('profilePicture')}" th:errors="*{profilePicture}"></div>

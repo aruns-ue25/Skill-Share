@@ -28,6 +28,9 @@ public class UserProfileUpdateDTO {
     @Size(max = 100, message = "Location must not exceed 100 characters")
     private String location;
 
+    @Size(max = 150, message = "University name must not exceed 150 characters")
+    private String university;
+
     private MultipartFile profilePicture;
 
     private java.util.Set<Long> mainSkillIds;

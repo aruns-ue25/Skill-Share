@@ -32,6 +32,9 @@ public class UserProfile {
     @Column(length = 255)
     private String profilePictureUrl;
 
+    @Column(length = 150)
+    private String university;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private AvailabilityStatus availabilityStatus;
@@ -88,6 +91,8 @@ public class UserProfile {
     public void setAvailabilityStatus(AvailabilityStatus availabilityStatus) { this.availabilityStatus = availabilityStatus; }
     public Set<Long> getMainSkillIds() { return mainSkillIds; }
     public void setMainSkillIds(Set<Long> mainSkillIds) { this.mainSkillIds = mainSkillIds; }
+    public String getUniversity() { return university; }
+    public void setUniversity(String university) { this.university = university; }
     public Instant getCreatedAt() { return createdAt; }
     public Instant getUpdatedAt() { return updatedAt; }
 }
