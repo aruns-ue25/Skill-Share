@@ -5,8 +5,13 @@ import com.skillshare.skillshare.exception.AccessDeniedException;
 import com.skillshare.skillshare.exception.ResourceNotFoundException;
 import com.skillshare.skillshare.model.skill.Skill;
 import com.skillshare.skillshare.model.user.User;
+import com.skillshare.skillshare.model.skill.SkillCategory;
+import com.skillshare.skillshare.model.skill.SkillProficiency;
 import com.skillshare.skillshare.repository.SkillRepository;
+import com.skillshare.skillshare.repository.SkillSpecifications;
 import com.skillshare.skillshare.repository.UserRepository;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -81,16 +86,26 @@ public class SkillServiceImpl implements SkillService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Skill> getAvailableSkills(Long currentUserId) {
-        return skillRepository.findByOwnerIdNot(currentUserId);
-    }
+    public List<Skill> getFilteredSkills(Long currentUserId, String keyword, SkillCategory category, SkillProficiency proficiency, String sortBy) {
+        // Chain the specifications naturally
+        Specification<Skill> spec = Specification.where(SkillSpecifications.excludeOwner(currentUserId))
+                .and(SkillSpecifications.hasName(keyword))
+                .and(SkillSpecifications.hasCategory(category))
+                .and(SkillSpecifications.hasProficiency(proficiency));
 
-    @Override
-    @Transactional(readOnly = true)
-    public List<Skill> searchAvailableSkills(String query, Long currentUserId) {
-        if (query == null || query.isBlank()) {
-            return getAvailableSkills(currentUserId);
+        // Let the DB execute the initial filter and sort natively by creation time
+        List<Skill> skills = skillRepository.findAll(spec, Sort.by(Sort.Direction.DESC, "createdAt"));
+
+        // If 'Highest Proficiency' sort requested, safely post-sort Java enum ordinals
+        if ("proficiency".equalsIgnoreCase(sortBy)) {
+            skills.sort((s1, s2) -> {
+                // Descending ordinal ensures Advanced > Intermediate > Beginner
+                int profCompare = s2.getProficiency().compareTo(s1.getProficiency());
+                if (profCompare != 0) return profCompare;
+                // Secondary check ensures ties show the newest first
+                return s2.getCreatedAt().compareTo(s1.getCreatedAt()); 
+            });
         }
-        return skillRepository.findByNameContainingIgnoreCaseAndOwnerIdNot(query.trim(), currentUserId);
+        return skills;
     }
 }

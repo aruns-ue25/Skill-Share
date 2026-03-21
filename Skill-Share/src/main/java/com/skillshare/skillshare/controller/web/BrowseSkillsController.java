@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
+import com.skillshare.skillshare.model.skill.SkillCategory;
+import com.skillshare.skillshare.model.skill.SkillProficiency;
+
+// ... other imports
+
 @Controller
 @RequestMapping("/browse")
 public class BrowseSkillsController {
@@ -25,19 +30,29 @@ public class BrowseSkillsController {
     @GetMapping
     public String browseSkills(@AuthenticationPrincipal CustomUserDetails userDetails,
                                @RequestParam(name = "q", required = false) String query,
+                               @RequestParam(name = "category", required = false) SkillCategory category,
+                               @RequestParam(name = "proficiency", required = false) SkillProficiency proficiency,
+                               @RequestParam(name = "sort", defaultValue = "newest") String sort,
                                Model model) {
+        
         Long currentUserId = userDetails.getUser().getId();
-        List<Skill> skills;
-
-        // Perform search if query exists, otherwise fetch all
-        if (query != null && !query.isBlank()) {
-            skills = skillService.searchAvailableSkills(query, currentUserId);
-            model.addAttribute("searchQuery", query);
-        } else {
-            skills = skillService.getAvailableSkills(currentUserId);
-        }
+        
+        List<Skill> skills = skillService.getFilteredSkills(currentUserId, query, category, proficiency, sort);
 
         model.addAttribute("skills", skills);
+        model.addAttribute("searchQuery", query);
+        model.addAttribute("selectedCategory", category);
+        model.addAttribute("selectedProficiency", proficiency);
+        model.addAttribute("selectedSort", sort);
+        
+        // Pass enum values specifically omitting 'EXPERT' from UI browsing.
+        model.addAttribute("categories", SkillCategory.values());
+        model.addAttribute("proficiencies", new SkillProficiency[]{
+                SkillProficiency.BEGINNER, 
+                SkillProficiency.INTERMEDIATE, 
+                SkillProficiency.ADVANCED
+        });
+
         return "browse-skills";
     }
 }

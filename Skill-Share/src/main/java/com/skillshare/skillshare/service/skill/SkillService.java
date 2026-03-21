@@ -2,6 +2,8 @@ package com.skillshare.skillshare.service.skill;
 
 import com.skillshare.skillshare.dto.skill.SkillRequest;
 import com.skillshare.skillshare.model.skill.Skill;
+import com.skillshare.skillshare.model.skill.SkillCategory;
+import com.skillshare.skillshare.model.skill.SkillProficiency;
 
 import java.util.List;
 
@@ -15,9 +17,8 @@ public interface SkillService {
     
     Skill getSkillByIdForUser(Long userId, Long skillId);
 
-    // --- Browse / Search ---
-    List<Skill> getAvailableSkills(Long currentUserId);
-    List<Skill> searchAvailableSkills(String query, Long currentUserId);
+    // --- Browse / Search (Feature 3 & 5) ---
+    List<Skill> getFilteredSkills(Long currentUserId, String keyword, SkillCategory category, SkillProficiency proficiency, String sortBy);
 
     // --- Update ---
     Skill updateSkill(Long userId, Long skillId, SkillRequest request);

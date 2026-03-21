@@ -404,7 +404,7 @@
             <p class="hero-subtitle">Discover thousands of talented individuals ready to share their expertise.</p>
 
             <div class="search-container">
-                <form th:action="@{/browse}" method="get" class="search-box">
+                <form th:action="@{/browse}" method="get" class="search-box" id="browseForm">
                     <input type="text" name="q" class="search-input"
                         placeholder="e.g. Graphic Design, Public Speaking..." th:value="${searchQuery}">
                     <button type="submit" class="btn-search">
@@ -415,18 +415,27 @@
         </div>
     </header>
 
-    <!-- Filter Bar (UI Prepared for Feature 4) -->
+    <!-- Filter Bar -->
     <div class="filter-bar">
         <div class="container d-flex gap-3 overflow-auto pb-2 pb-sm-0">
-            <select class="filter-select text-muted" disabled>
+            <select name="category" form="browseForm" class="filter-select text-dark" onchange="this.form.submit()">
                 <option value="">All Categories</option>
+                <option th:each="cat : ${categories}" th:value="${cat}" th:text="${cat}"
+                    th:selected="${cat == selectedCategory}"></option>
             </select>
-            <select class="filter-select text-muted" disabled>
+
+            <select name="proficiency" form="browseForm" class="filter-select text-dark" onchange="this.form.submit()">
                 <option value="">All Proficiencies</option>
+                <option th:each="prof : ${proficiencies}" th:value="${prof}" th:text="${prof}"
+                    th:selected="${prof == selectedProficiency}"></option>
             </select>
+
             <div class="ms-auto" style="min-width: 150px;">
-                <select class="filter-select w-100 text-muted" disabled>
-                    <option value="newest">Sort by: Relevance</option>
+                <select name="sort" form="browseForm" class="filter-select w-100 text-dark"
+                    onchange="this.form.submit()">
+                    <option value="newest" th:selected="${selectedSort == 'newest'}">Sort by: Relevance</option>
+                    <option value="proficiency" th:selected="${selectedSort == 'proficiency'}">Sort by: Highest
+                        Proficiency</option>
                 </select>
             </div>
         </div>
