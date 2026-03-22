@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="24.327" tests="4" failures="4">
+  <testsuite name="Root Suite" timestamp="2026-03-22T13:25:00" tests="0" file="cypress\e2e\sprint2\manage_offered_skills.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Manage offered skills" timestamp="2026-03-22T13:25:00" tests="4" time="24.322" failures="4">
+    <testcase name="Manage offered skills 01 Add new skills successfully and check they are stored" time="0.000" classname="01 Add new skills successfully and check they are stored">
+      <failure message="Timed out retrying after 4000ms: Expected to find content: &apos;Advanced Java Programming&apos; within the element: &lt;div.skills-grid&gt; but never did." type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Advanced Java Programming' within the element: <div.skills-grid> but never did.
+    at Context.eval (webpack://spring2_test/./cypress/e2e/sprint2/manage_offered_skills.cy.js:36:69)]]></failure>
+    </testcase>
+    <testcase name="Manage offered skills 02 Edit existing skills and save correctly" time="0.000" classname="02 Edit existing skills and save correctly">
+      <failure message="Timed out retrying after 4000ms: Expected to find content: &apos;Advanced Java Programming&apos; within the selector: &apos;.skill-card&apos; but never did." type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Advanced Java Programming' within the selector: '.skill-card' but never did.
+    at Context.eval (webpack://spring2_test/./cypress/e2e/sprint2/manage_offered_skills.cy.js:42:11)]]></failure>
+    </testcase>
+    <testcase name="Manage offered skills 03 Delete skills and verify removal" time="0.000" classname="03 Delete skills and verify removal">
+      <failure message="Timed out retrying after 4000ms: Expected to find content: &apos;Master Java Programming&apos; within the selector: &apos;.skill-card&apos; but never did." type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Master Java Programming' within the selector: '.skill-card' but never did.
+    at Context.eval (webpack://spring2_test/./cypress/e2e/sprint2/manage_offered_skills.cy.js:60:11)]]></failure>
+    </testcase>
+    <testcase name="Manage offered skills 04 Verify users can only modify their own skills" time="0.000" classname="04 Verify users can only modify their own skills">
+      <failure message="Timed out retrying after 4000ms: expected &apos;http://localhost:8081/login&apos; to include &apos;/skills&apos;" type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 4000ms: expected 'http://localhost:8081/login' to include '/skills'
+    at Context.eval (webpack://spring2_test/./cypress/e2e/sprint2/manage_offered_skills.cy.js:70:17)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

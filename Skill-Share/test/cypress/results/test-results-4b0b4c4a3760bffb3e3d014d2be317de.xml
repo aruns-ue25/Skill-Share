@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="10.922" tests="4" failures="0">
+  <testsuite name="Root Suite" timestamp="2026-03-22T11:58:02" tests="0" file="cypress\e2e\sprint2\profile_management.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Profile Management &amp; Validation" timestamp="2026-03-22T11:58:02" tests="4" time="10.921" failures="0">
+    <testcase name="Profile Management &amp; Validation 01 Setup: Register test user" time="1.730" classname="01 Setup: Register test user">
+    </testcase>
+    <testcase name="Profile Management &amp; Validation 02 Authentication Check: Unauthorized access blocked" time="0.424" classname="02 Authentication Check: Unauthorized access blocked">
+    </testcase>
+    <testcase name="Profile Management &amp; Validation 03 Valid Update Flow and UI Check" time="6.278" classname="03 Valid Update Flow and UI Check">
+    </testcase>
+    <testcase name="Profile Management &amp; Validation 04 Validation and Error Handling" time="2.418" classname="04 Validation and Error Handling">
+    </testcase>
+  </testsuite>
+</testsuites>

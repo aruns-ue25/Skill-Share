@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="19.247" tests="4" failures="1">
+  <testsuite name="Root Suite" timestamp="2026-03-22T13:29:56" tests="0" file="cypress\e2e\sprint2\manage_skills_ui.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Manage Skills - User Interface" timestamp="2026-03-22T13:29:56" tests="4" time="19.242" failures="1">
+    <testcase name="Manage Skills - User Interface 01 Verify Manage Skills page loads for logged-in users" time="7.263" classname="01 Verify Manage Skills page loads for logged-in users">
+    </testcase>
+    <testcase name="Manage Skills - User Interface 02 Verify existing skills explicitly display in a list/table" time="2.639" classname="02 Verify existing skills explicitly display in a list/table">
+    </testcase>
+    <testcase name="Manage Skills - User Interface 03 Ensure all input fields and dropdowns are correctly rendered" time="0.000" classname="03 Ensure all input fields and dropdowns are correctly rendered">
+      <failure message="Timed out retrying after 4000ms: Too many elements found. Found &apos;8&apos;, expected &apos;4&apos;." type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 4000ms: Too many elements found. Found '8', expected '4'.
+    at Context.eval (webpack://spring2_test/./cypress/e2e/sprint2/manage_skills_ui.cy.js:49:44)
+
+      + expected - actual
+
+      -8
+      +4
+      ]]></failure>
+    </testcase>
+    <testcase name="Manage Skills - User Interface 04 Verify capability to delete a skill seamlessly from the interface" time="4.432" classname="04 Verify capability to delete a skill seamlessly from the interface">
+    </testcase>
+  </testsuite>
+</testsuites>

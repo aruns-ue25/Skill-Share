@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="9.646" tests="2" failures="0">
+  <testsuite name="Root Suite" timestamp="2026-03-22T11:58:16" tests="0" file="cypress\e2e\sprint2\public_profile.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Public Profile Display" timestamp="2026-03-22T11:58:16" tests="2" time="9.646" failures="0">
+    <testcase name="Public Profile Display 01 Setup Target User" time="3.596" classname="01 Setup Target User">
+    </testcase>
+    <testcase name="Public Profile Display 02 View Another Users Profile without Edit Permissions" time="5.966" classname="02 View Another Users Profile without Edit Permissions">
+    </testcase>
+  </testsuite>
+</testsuites>

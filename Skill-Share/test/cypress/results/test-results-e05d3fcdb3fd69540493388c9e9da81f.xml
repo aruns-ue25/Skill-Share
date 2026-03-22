@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="8.431" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2026-03-22T11:57:51" tests="0" file="cypress\e2e\sprint2\browse_users.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Browse and Search Users" timestamp="2026-03-22T11:57:51" tests="1" time="8.429" failures="0">
+    <testcase name="Browse and Search Users 01 Browse Users with Search Keywords" time="8.389" classname="01 Browse Users with Search Keywords">
+    </testcase>
+  </testsuite>
+</testsuites>

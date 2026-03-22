@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="4.199" tests="3" failures="1">
+  <testsuite name="Root Suite" timestamp="2026-03-22T13:24:08" tests="0" file="cypress\e2e\sprint2\browse_available_skills.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Browse and search available skills" timestamp="2026-03-22T13:24:08" tests="3" time="4.195" failures="1">
+    <testcase name="Browse and search available skills &quot;before all&quot; hook for &quot;01 View available skills and their owner information prominently&quot;" time="0.000" classname="&quot;before all&quot; hook for &quot;01 View available skills and their owner information prominently&quot;">
+      <failure message="`cy.click()` can only be called on a single element. Your subject contained 4 elements. Pass `{ multiple: true }` if you want to serially click each element.
+
+https://on.cypress.io/click
+
+Because this error occurred during a `before all` hook we are skipping the remaining tests in the current suite: `Browse and search available...`" type="CypressError"><![CDATA[CypressError: `cy.click()` can only be called on a single element. Your subject contained 4 elements. Pass `{ multiple: true }` if you want to serially click each element.
+
+https://on.cypress.io/click
+
+Because this error occurred during a `before all` hook we are skipping the remaining tests in the current suite: `Browse and search available...`
+    at mouseAction (http://localhost:8081/__cypress/runner/cypress_runner.js:114755:68)
+    at Context.click (http://localhost:8081/__cypress/runner/cypress_runner.js:114922:14)
+    at wrapped (http://localhost:8081/__cypress/runner/cypress_runner.js:146330:19)
+From Your Spec Code:
+    at Context.eval (webpack://spring2_test/./cypress/e2e/sprint2/browse_available_skills.cy.js:20:33)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -1,0 +1,76 @@
+
+Warning: The allowCypressEnv configuration option is enabled. This allows any browser code to read values from Cypress.env(). This is insecure and will be removed in a future major version.
+
+1. Replace Cypress.env() calls with cy.env() (for sensitive values) or Cypress.expose() (for public configuration)
+2. Set allowCypressEnv: false in your Cypress configuration to disable Cypress.env()
+
+Learn more: https://on.cypress.io/cypress-env-migration
+
+
+====================================================================================================
+
+  (Run Starting)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Cypress:        15.12.0                                                                        │
+  │ Browser:        Electron 138 (headless)                                                        │
+  │ Node Version:   v25.8.1 (C:\Program Files\nodejs\node.exe)                                     │
+  │ Specs:          1 found (manage_offered_skills.cy.js)                                          │
+  │ Searched:       C:\Users\Heshanth\Desktop\SE_Project\Skill-Share\Skill-Share\test\cypress\e2e\ │
+  │                 sprint2\manage_offered_skills.cy.js                                            │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  manage_offered_skills.cy.js                                                     (1 of 1)
+
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        4                                                                                │
+  │ Passing:      0                                                                                │
+  │ Failing:      4                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  5                                                                                │
+  │ Video:        true                                                                             │
+  │ Duration:     24 seconds                                                                       │
+  │ Spec Ran:     manage_offered_skills.cy.js                                                      │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+  (Screenshots)
+
+  -  C:\Users\Heshanth\Desktop\SE_Project\Skill-Share\Skill-Share\test\cypress\screen     (1000x723)
+     shots\manage_offered_skills.cy.js\01-manage-skills-add-filled.png                              
+  -  C:\Users\Heshanth\Desktop\SE_Project\Skill-Share\Skill-Share\test\cypress\screen     (1280x720)
+     shots\manage_offered_skills.cy.js\Manage offered skills -- 01 Add new skills suc               
+     cessfully and check they are stored (failed).png                                               
+  -  C:\Users\Heshanth\Desktop\SE_Project\Skill-Share\Skill-Share\test\cypress\screen     (1280x720)
+     shots\manage_offered_skills.cy.js\Manage offered skills -- 02 Edit existing skil               
+     ls and save correctly (failed).png                                                             
+  -  C:\Users\Heshanth\Desktop\SE_Project\Skill-Share\Skill-Share\test\cypress\screen     (1280x720)
+     shots\manage_offered_skills.cy.js\Manage offered skills -- 03 Delete skills and                
+     verify removal (failed).png                                                                    
+  -  C:\Users\Heshanth\Desktop\SE_Project\Skill-Share\Skill-Share\test\cypress\screen     (1280x720)
+     shots\manage_offered_skills.cy.js\Manage offered skills -- 04 Verify users can o               
+     nly modify their own skills (failed).png                                                       
+
+
+  (Video)
+
+  -  Video output: C:\Users\Heshanth\Desktop\SE_Project\Skill-Share\Skill-Share\test\cypress\videos\manage_offered_skills.cy.js.mp4
+
+
+====================================================================================================
+
+  (Run Finished)
+
+
+       Spec                                              Tests  Passing  Failing  Pending  Skipped  
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ ×  manage_offered_skills.cy.js              00:24        4        -        4        -        - │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+    ×  1 of 1 failed (100%)                     00:24        4        -        4        -        -  
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="17.893" tests="4" failures="2">
+  <testsuite name="Root Suite" timestamp="2026-03-22T13:30:53" tests="0" file="cypress\e2e\sprint2\skill_management_validation.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Implement validation and error handling for skill management" timestamp="2026-03-22T13:30:53" tests="4" time="17.893" failures="2">
+    <testcase name="Implement validation and error handling for skill management 01 Validates required fields proactively on submission" time="0.000" classname="01 Validates required fields proactively on submission">
+      <failure message="Timed out retrying after 4000ms: Expected to find element: `.alert-error-custom`, but never found it." type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 4000ms: Expected to find element: `.alert-error-custom`, but never found it.
+    at Context.eval (webpack://spring2_test/./cypress/e2e/sprint2/skill_management_validation.cy.js:31:38)]]></failure>
+    </testcase>
+    <testcase name="Implement validation and error handling for skill management 02 Ensures skill name cannot be empty and attributes validated" time="1.512" classname="02 Ensures skill name cannot be empty and attributes validated">
+    </testcase>
+    <testcase name="Implement validation and error handling for skill management 03 Ensures category and proficiency level must be explicitly selected" time="1.734" classname="03 Ensures category and proficiency level must be explicitly selected">
+    </testcase>
+    <testcase name="Implement validation and error handling for skill management 04 Valid skill entries are natively accepted without errors" time="0.000" classname="04 Valid skill entries are natively accepted without errors">
+      <failure message="Timed out retrying after 4000ms: Expected to find content: &apos;Validation Passed Skill&apos; within the element: &lt;div.skills-grid&gt; but never did." type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Validation Passed Skill' within the element: <div.skills-grid> but never did.
+    at Context.eval (webpack://spring2_test/./cypress/e2e/sprint2/skill_management_validation.cy.js:76:67)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>
